@@ -1,0 +1,39 @@
+{
+  "_comment": "Window settings",
+    "WINDOW_WIDTH": 1920,
+    "WINDOW_HEIGHT": 1080,
+
+  "_comment": "Background settings",
+    "BACKGROUND_COLOR": [0, 0, 0],
+    "LINE_COLOR": [255, 255, 255],
+    "LINE_WIDTH": 5,
+
+  "_comment": "Platform settings",
+    "PLATFORMS": [[400, 600, 400, 5], [1200, 400, 300, 5]],
+    "PLATFORM_COLOR": [255, 255, 255],
+
+  "_comment": "Player 1 settings",
+    "PLAYER1_WIDTH": 50,
+    "PLAYER1_HEIGHT": 50,
+    "PLAYER1_COLOR": [255, 0, 0],
+
+  "_comment": "Player 2 settings",
+    "PLAYER2_WIDTH": 50,
+    "PLAYER2_HEIGHT": 50,
+    "PLAYER2_COLOR": [0, 0, 255],
+
+  "_comment": "Player 1 movement settings",
+    "PLAYER1_SPEED": 2,
+    "PLAYER1_JUMP_FORCE": 5,
+    "PLAYER1_FALL_SPEED": 0.025,
+    "PLAYER1_GRAVITY": 0.05,
+
+  "_comment": "Player 2 movement settings",
+    "PLAYER2_SPEED": 2,
+    "PLAYER2_JUMP_FORCE": 5,
+    "PLAYER2_FALL_SPEED": 0.025,
+    "PLAYER2_GRAVITY": 0.05,
+
+  "_comment": "Sword settings",
+    "SWORD_SIZE": 10
+}
