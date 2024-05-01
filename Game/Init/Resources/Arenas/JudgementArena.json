@@ -2,5 +2,6 @@
   "NAME": "The land of Judgement",
   "WIDTH": 1920,
   "HEIGHT": 1080,
+  "GRAVITY": 0.01,
   "FLOOR_Y": 200
 }

@@ -1,7 +1,8 @@
 {
   "NAME": "Dagger",
   "DAMAGE": 5,
-  "WIDTH": 3,
-  "HEIGHT": 6,
+  "WIDTH": 25,
+  "HEIGHT": 25,
+  "SPEED": 20,
   "DUEL_WIELD": "True"
 }

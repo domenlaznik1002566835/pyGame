@@ -2,10 +2,11 @@ import pygame as pg
 from .Platform import Platform
 
 class Arena:
-    def __init__(self, name, width, height, floor_y):
+    def __init__(self, name, width, height, gravity, floor_y):
         self.name = name
         self.width = width
         self.height = height
+        self.gravity = gravity
         self.floor_y = floor_y
         self.platforms = []
 

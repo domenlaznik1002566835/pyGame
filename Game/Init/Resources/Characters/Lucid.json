@@ -3,7 +3,8 @@
   "HEALTH": 80,
   "SPEED": 5,
   "JUMP_FORCE": 5,
-  "FALL_SPEED": 3,
+  "FALL_SPEED": 0.1,
+  "MAX_JUMP_COUNT": 3,
   "WIDTH": 30,
   "HEIGHT": 50
 }
