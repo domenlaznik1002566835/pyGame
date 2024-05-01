@@ -1,0 +1,9 @@
+{
+  "NAME": "Lucid",
+  "HEALTH": 80,
+  "SPEED": 5,
+  "JUMP_FORCE": 5,
+  "FALL_SPEED": 3,
+  "WIDTH": 30,
+  "HEIGHT": 50
+}
