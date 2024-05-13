@@ -21,8 +21,8 @@ class MeleWeapon(Weapon):
         if self.rotation == 1:
             self.x = x - x_change - self.width
             self.y = y - y_change - self.height // 2
-            pg.draw.rect(window, (0, 0, 255), (x - x_change - self.width, y - y_change - self.height//2, self.width, self.height))
+            window.blit(pg.transform.flip(self.image, True, False), (x - x_change - self.width, y - y_change - self.height//2))
         elif self.rotation == -1:
             self.x = x + width + x_change
             self.y = y - y_change - self.height // 2
-            pg.draw.rect(window, (0, 0, 255), (x + width + x_change, y - y_change - self.height//2, self.width, self.height))
+            window.blit(self.image, (x + width + x_change, y - y_change - self.height//2))

@@ -23,9 +23,12 @@ class Character:
         self.last_swing_time = 0
         self.using_weapon = False
         self.last_hit_time = 0
+        original_image = pg.image.load('Resources/Sprites/testCharacter.png')
+        self.image = pg.transform.scale(original_image, (width, height))
+        self.rotation = 0
 
     def draw(self, window):
-        pg.draw.rect(window, (255, 0, 0), (self.x, self.y, self.width, self.height))
+        window.blit(self.image, (self.x, self.y))
         if self.current_weapon != None:
             self.current_weapon.draw(window, self.x, self.y, self.height, self.width)
 
@@ -40,6 +43,8 @@ class Character:
         self.weapons.append(weapon)
         if self.current_weapon == None:
             self.current_weapon = weapon
+            self.rotation = weapon.rotation
+
 
     def change_weapon(self, weapon):
         self.current_weapon = weapon

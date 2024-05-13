@@ -13,6 +13,8 @@ class Weapon:
         self.swing_coordinates = []
         self.x = 0
         self.y = 0
+        original_image = pg.image.load('Resources/Sprites/testSword.png')
+        self.image = pg.transform.scale(original_image, (width, height))
 
     def set_coordinates(self, x, y):
         self.coordinates = [x, y]
