@@ -1,0 +1,8 @@
+{
+  "NAME": "Throwing Knife",
+  "DAMAGE": 4,
+  "WIDTH": 20,
+  "HEIGHT": 25,
+  "SPEED": 3.5,
+  "COOLDOWN": 600
+}

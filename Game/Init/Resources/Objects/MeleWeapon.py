@@ -2,16 +2,22 @@ from .Weapon import Weapon
 import pygame as pg
 
 class MeleWeapon(Weapon):
-    def __init__(self, name, damage, width, height, speed, duel_wield=False):
-        super().__init__(name, damage, width, height, speed, duel_wield)
+    def __init__(self, name, damage, width, height, speed):
+        super().__init__(name, damage, width, height, speed)
         self.swing_coordinates = []
 
     def set_swing_coordinates(self, coordinates):
         self.swing_coordinates = coordinates
 
+    def set_use_coordinates(self, coordinates):
+        self.swing_coordinates = coordinates
+
+    def get_hitbox(self):
+        return pg.Rect(self.x, self.y, self.width, self.height)
+
     def draw(self, window, x, y, height, width):
-        x_change = 0
-        y_change = 0
+        x_change = self.coordinates[0]
+        y_change = self.coordinates[1]
         if self.stage == -1:
             x_change = self.coordinates[0]
             y_change = self.coordinates[1]

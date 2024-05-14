@@ -3,15 +3,32 @@ import pygame as pg
 import numpy as np
 import Resources.Creation.Arenas as Arenas
 import Resources.Creation.Characters as Characters
+from Resources.Objects.MeleWeapon import MeleWeapon
+from Resources.Objects.RangedWeapon import RangedWeapon
+from main_menu import main_menu
 
 pg.init()
 
 # Judgement arena
 current_arena = Arenas.JudgementArena
-# Player 1
-player1 = Characters.Lucid
-# Player 2
-player2 = Characters.Bucid
+
+window = pg.display.set_mode((current_arena.width, current_arena.height))
+result = main_menu(window)
+
+if len(result) == 2:
+    if(result[0] == 'Hikaru'):
+        player1 = Characters.Hikaru
+    elif(result[0] == 'Lucid'):
+        player1 = Characters.Lucid
+    elif(result[0] == 'Ronan'):
+        player1 = Characters.Ronan
+    if(result[1] == 'Hikaru'):
+        player2 = Characters.Hikaru
+    elif(result[1] == 'Lucid'):
+        player2 = Characters.Lucid
+    elif(result[1] == 'Ronan'):
+        player2 = Characters.Ronan
+
 
 pg.font.init()
 font = pg.font.Font(None, 35)
@@ -56,13 +73,21 @@ while running:
             if event.key == pg.K_w:
                 player1.jump()
             if event.key == pg.K_f:
+                player1.current_weapon = player1.weapons[0]
                 player1.current_weapon.stage = -1
+                player1.use_weapon()
+            if event.key == pg.K_g:
+                player1.current_weapon = player1.weapons[1]
                 player1.use_weapon()
             # Player2
             if event.key == pg.K_UP:
                 player2.jump()
             if event.key == pg.K_KP1:
+                player2.current_weapon = player2.weapons[0]
                 player2.current_weapon.stage = -1
+                player2.use_weapon()
+            if event.key == pg.K_KP2:
+                player2.current_weapon = player2.weapons[1]
                 player2.use_weapon()
         if event.type == pg.KEYUP:
             # Player1
@@ -71,10 +96,11 @@ while running:
             # Player2
             if event.key == pg.K_DOWN:
                 player2.jump_multiplier = player2.jump_force
-        if event.type == pg.USEREVENT+1:
+        if event.type == pg.USEREVENT + 1:
             # Player1
             if player1.using_weapon == True:
-                if player1.current_weapon.stage < len(player1.current_weapon.swing_coordinates) - 1:
+                if isinstance(player1.current_weapon, MeleWeapon) and player1.current_weapon.stage < len(
+                        player1.current_weapon.swing_coordinates) - 1:
                     player1.current_weapon.stage += 1
                 else:
                     player1.current_weapon.stage = -1
@@ -82,7 +108,8 @@ while running:
                     player1.using_weapon = False
             # Player2
             if player2.using_weapon == True:
-                if player2.current_weapon.stage < len(player2.current_weapon.swing_coordinates) - 1:
+                if isinstance(player2.current_weapon, MeleWeapon) and player2.current_weapon.stage < len(
+                        player2.current_weapon.swing_coordinates) - 1:
                     player2.current_weapon.stage += 1
                 else:
                     player2.current_weapon.stage = -1
@@ -108,23 +135,35 @@ while running:
             player2.jumping = False
             player2.jump_count = 0
 
-    if player1.current_weapon is not None and player1.current_weapon.get_hitbox().colliderect(player2.get_hitbox()) and player1.using_weapon == True:
+    if player1.current_weapon is player1.weapons[0] and player1.current_weapon.get_hitbox().colliderect(player2.get_hitbox()) and player1.using_weapon == True:
         if current_time - player2.last_hit_time >= 500:
             player2.health -= player1.current_weapon.damage
             player2.last_hit_time = current_time
-    if player2.current_weapon is not None and player2.current_weapon.get_hitbox().colliderect(player1.get_hitbox()) and player2.using_weapon == True:
+    if player2.current_weapon is player2.weapons[0] and player2.current_weapon.get_hitbox().colliderect(player1.get_hitbox()) and player2.using_weapon == True:
         if current_time - player1.last_hit_time >= 500:
             player1.health -= player2.current_weapon.damage
             player1.last_hit_time = current_time
+    for projectile in player1.weapons[1].projectiles:
+        if projectile.get_hitbox().colliderect(player2.get_hitbox()):
+            player2.health -= player1.weapons[1].damage
+            player1.weapons[1].projectiles.remove(projectile)
+    for projectile in player2.weapons[1].projectiles:
+        if projectile.get_hitbox().colliderect(player1.get_hitbox()):
+            player1.health -= player2.weapons[1].damage
+            player2.weapons[1].projectiles.remove(projectile)
 
     window.fill((0, 0, 0))
     current_arena.draw(window)
     player1.draw(window)
     player2.draw(window)
-    health_text1 = font.render(f"Player 1 Health: {player1.health}", True, (255, 255, 255))
+    health_text1 = font.render(f"{player1.name} Health: {player1.health}", True, (255, 255, 255))
     window.blit(health_text1, (300, 200))
-    health_text2 = font.render(f"Player 2 Health: {player2.health}", True, (255, 255, 255))
+    health_text2 = font.render(f"{player2.name} Health: {player2.health}", True, (255, 255, 255))
     window.blit(health_text2, (window.get_width() - health_text2.get_width() - 300, 200))
+    if player1.weapons[1].projectiles != []:
+        player1.weapons[1].draw_projectiles(window, current_arena.width)
+    if player2.weapons[1].projectiles != []:
+        player2.weapons[1].draw_projectiles(window, current_arena.width)
     pg.display.update()
 
 pg.quit()

@@ -1,0 +1,8 @@
+{
+  "NAME": "Shiruken",
+  "DAMAGE": 4,
+  "WIDTH": 20,
+  "HEIGHT": 20,
+  "SPEED": 3.5,
+  "COOLDOWN": 500
+}

@@ -1,0 +1,11 @@
+{
+  "NAME": "Hikaru",
+  "HEALTH": 100,
+  "SPEED": 3.5,
+  "JUMP_FORCE": 5,
+  "FALL_SPEED": 0.15,
+  "MAX_JUMP_COUNT": 2,
+  "WIDTH": 30,
+  "HEIGHT": 60,
+  "SPRITE": "Resources/Sprites/ninja.png"
+}

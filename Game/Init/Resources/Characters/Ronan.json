@@ -1,0 +1,11 @@
+{
+  "NAME": "Ronan",
+  "HEALTH": 120,
+  "SPEED": 3,
+  "JUMP_FORCE": 5,
+  "FALL_SPEED": 0.2,
+  "MAX_JUMP_COUNT": 2,
+  "WIDTH": 40,
+  "HEIGHT": 60,
+  "SPRITE": "Resources/Sprites/samurai.png"
+}

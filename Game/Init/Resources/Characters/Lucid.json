@@ -6,5 +6,6 @@
   "FALL_SPEED": 0.1,
   "MAX_JUMP_COUNT": 3,
   "WIDTH": 30,
-  "HEIGHT": 50
+  "HEIGHT": 50,
+  "SPRITE": "Resources/Sprites/thief.png"
 }
