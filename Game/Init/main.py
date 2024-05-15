@@ -8,6 +8,7 @@ from Resources.Objects.RangedWeapon import RangedWeapon
 from main_menu import main_menu
 
 pg.init()
+pg.mixer.init()
 
 # Judgement arena
 current_arena = Arenas.JudgementArena
@@ -41,6 +42,9 @@ player2.start(current_arena.width - current_arena.width/5, current_arena.height 
 player2.draw(window)
 
 pg.display.update()
+pg.mixer.music.load('Resources/Audio/Samurai_Showdown.mp3')
+pg.mixer.music.play(-1)
+music_playing = True
 
 running = True
 while running:
@@ -69,6 +73,13 @@ while running:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 running = False
+            if event.key == pg.K_m:
+                if music_playing:
+                    pg.mixer.music.pause()
+                    music_playing = False
+                else:
+                    pg.mixer.music.unpause()
+                    music_playing = True
             # Player1
             if event.key == pg.K_w:
                 player1.jump()
