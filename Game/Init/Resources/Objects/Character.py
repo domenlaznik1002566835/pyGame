@@ -31,8 +31,25 @@ class Character:
         self.image_left = pg.transform.flip(self.image_right, True, False)
         self.image = self.image_right
         self.rotation = 0
+        self.flash_start_time = None
+        self.flash_duration = None
+        self.flash_alpha_direction = 1
 
     def draw(self, window):
+        if self.flash_start_time is not None:
+            elapsed_time = pg.time.get_ticks() - self.flash_start_time
+            if elapsed_time < self.flash_duration:
+                alpha = self.image.get_alpha() + 5 * self.flash_alpha_direction
+                if alpha > 255:
+                    alpha = 255
+                    self.flash_alpha_direction = -1
+                elif alpha < 0:
+                    alpha = 0
+                    self.flash_alpha_direction = 1
+                self.image.set_alpha(alpha)
+            else:
+                self.image.set_alpha(255)
+                self.flash_start_time = None
         window.blit(self.image, (self.x, self.y))
         if self.current_weapon != None:
             self.current_weapon.draw(window, self.x, self.y, self.height, self.width)
@@ -84,3 +101,8 @@ class Character:
 
     def get_hitbox(self):
         return pg.Rect(self.x, self.y, self.width, self.height)
+
+    def flash(self, duration):
+        self.flash_start_time = pg.time.get_ticks()
+        self.flash_duration = duration
+        self.flash_alpha_direction = 1

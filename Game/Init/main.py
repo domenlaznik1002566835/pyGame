@@ -136,21 +136,29 @@ while running:
             player2.jump_count = 0
 
     if player1.current_weapon is player1.weapons[0] and player1.current_weapon.get_hitbox().colliderect(player2.get_hitbox()) and player1.using_weapon == True:
-        if current_time - player2.last_hit_time >= 500:
+        if current_time - player2.last_hit_time >= 1000:
+            player2.flash(1000)
             player2.health -= player1.current_weapon.damage
             player2.last_hit_time = current_time
     if player2.current_weapon is player2.weapons[0] and player2.current_weapon.get_hitbox().colliderect(player1.get_hitbox()) and player2.using_weapon == True:
-        if current_time - player1.last_hit_time >= 500:
+        if current_time - player1.last_hit_time >= 1000:
+            player1.flash(1000)
             player1.health -= player2.current_weapon.damage
             player1.last_hit_time = current_time
     for projectile in player1.weapons[1].projectiles:
         if projectile.get_hitbox().colliderect(player2.get_hitbox()):
-            player2.health -= player1.weapons[1].damage
-            player1.weapons[1].projectiles.remove(projectile)
+            if current_time - player2.last_hit_time >= 1000:
+                player2.flash(1000)
+                player2.health -= player1.weapons[1].damage
+                player1.weapons[1].projectiles.remove(projectile)
+                player2.last_hit_time = current_time
     for projectile in player2.weapons[1].projectiles:
         if projectile.get_hitbox().colliderect(player1.get_hitbox()):
-            player1.health -= player2.weapons[1].damage
-            player2.weapons[1].projectiles.remove(projectile)
+            if current_time - player1.last_hit_time >= 1000:
+                player1.flash(1000)
+                player1.health -= player2.weapons[1].damage
+                player2.weapons[1].projectiles.remove(projectile)
+                player1.last_hit_time = current_time
 
     window.fill((0, 0, 0))
     current_arena.draw(window)
