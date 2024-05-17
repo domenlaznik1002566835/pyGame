@@ -8,4 +8,4 @@ class Platform:
         self.height = height
 
     def draw(self, window):
-        pg.draw.rect(window, (0, 0, 0), (self.x, self.y, self.width, self.height))
+        pg.draw.rect(window, (255, 255, 255), (self.x, self.y, self.width, self.height))
