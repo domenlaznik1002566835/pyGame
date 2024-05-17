@@ -10,8 +10,9 @@ class DragonArena:
         self.floor_y = floor_y
         self.platforms = []
         self.background_color = (30, 30, 30)  # Temno ozadje za razlikovanje
-        self.player_speed = 2  # Prilagojena hitrost gibanja za Dragon Areno
-        self.player_gravity = gravity / 2  # Prilagojena gravitacija za Dragon Areno
+        self.player_speed = 1  # Zmanjšana hitrost gibanja za Dragon Areno
+        self.player_gravity = gravity / 2  # Zmanjšana gravitacija za Dragon Areno
+        self.player_jump_force = 1  # Zmanjšana skok sila za Dragon Areno
 
     def load_platforms(self):
         # Dodaj platforme specifične za Dragon Areno

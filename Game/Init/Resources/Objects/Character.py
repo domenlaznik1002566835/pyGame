@@ -1,4 +1,3 @@
-from .Weapon import Weapon
 import pygame as pg
 from .MeleWeapon import MeleWeapon
 from .RangedWeapon import RangedWeapon
@@ -67,25 +66,29 @@ class Character:
             self.current_weapon = weapon
             self.rotation = weapon.rotation
 
-    def move(self, direction, window_width):
+    def move(self, direction, window_width, speed=None):
+        if speed is None:
+            speed = self.speed
         if direction == 'right':
             if self.x + self.width < window_width:
-                self.x += self.speed
+                self.x += speed
             if self.current_weapon != None:
                 self.current_weapon.rotation = -1
             self.image = self.image_right
         elif direction == 'left':
             if self.x > 0:
-                self.x -= self.speed
+                self.x -= speed
             if self.current_weapon != None:
                 self.current_weapon.rotation = 1
             self.image = self.image_left
 
-    def jump(self):
+    def jump(self, jump_force=None):
+        if jump_force is None:
+            jump_force = self.jump_force
         if self.jump_count < self.max_jump_count:
             self.jumping = True
-            self.velocity = self.jump_force
-            self.jump_multiplier = self.jump_force
+            self.velocity = jump_force
+            self.jump_multiplier = jump_force
             self.jump_count += 1
 
     def use_weapon(self):
