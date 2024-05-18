@@ -9,23 +9,19 @@ class DragonArena:
         self.gravity = gravity
         self.floor_y = floor_y
         self.platforms = []
-        self.background_color = (30, 30, 30)  # Temno ozadje za razlikovanje
-        self.player_speed = 1  # Zmanjšana hitrost gibanja za Dragon Areno
-        self.player_gravity = gravity / 2  # Zmanjšana gravitacija za Dragon Areno
-        self.player_jump_force = 1  # Zmanjšana skok sila za Dragon Areno
+        self.background_color = (30, 30, 30)
+        self.player_speed = 1
+        self.player_gravity = gravity / 2
+        self.player_jump_force = 3
 
     def load_platforms(self):
-        # Dodaj platforme specifične za Dragon Areno
         self.add_platform(Platform(300, 500, 200, 50))
         self.add_platform(Platform(700, 300, 200, 100))
         self.add_platform(Platform(1100, 600, 200, 70))
 
     def draw(self, window):
-        # Risanje ozadja
         window.fill(self.background_color)
-        # Risanje tal
         pg.draw.line(window, (255, 0, 0), (0, self.height - self.floor_y), (self.width, self.height - self.floor_y), 2)
-        # Risanje platform
         for platform in self.platforms:
             platform.draw(window)
 
@@ -44,6 +40,11 @@ class DragonArena:
         player_rect = pg.Rect(player.x, player.y, player.width, player.height)
         for platform in self.platforms:
             platform_rect = pg.Rect(platform.x, platform.y, platform.width, platform.height)
-            if player_rect.colliderect(platform_rect) and player.y + player.height == platform.y:
+            if player_rect.colliderect(platform_rect) and abs((player.y + player.height) - platform.y) < 10:
                 return True
         return False
+
+    def move_down_through_platform(self, player):
+        if self.is_on_platform(player):
+            player.y += 50
+            player.jumping = True
