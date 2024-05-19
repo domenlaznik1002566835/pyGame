@@ -5,7 +5,9 @@ from Game.Init.Resources.Objects.DragonArena import DragonArena
 
 with open('./Resources/Arenas/DragonArena.json') as f:
     data = json.load(f)
-DragonArenaInstance = DragonArena(data['NAME'], data['WIDTH'], data['HEIGHT'], data['GRAVITY'], data['FLOOR_Y'])
+DragonArenaInstance = DragonArena(
+    data['NAME'], data['WIDTH'], data['HEIGHT'], data['GRAVITY'], data['FLOOR_Y'],
+    data['BACKGROUND_IMAGE'], data['PLATFORM_IMAGE'])
 DragonArenaInstance.load_platforms()
 
 with open('./Resources/Arenas/JudgementArena.json') as f:

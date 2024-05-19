@@ -43,9 +43,9 @@ if len(result) == 3:
         player_gravity = current_arena.player_gravity
         player_jump_force = current_arena.player_jump_force
     elif selected_arena == 'Judgement Arena':
-        player_speed = 1  # Default speed for Judgement Arena
+        player_speed = 1
         player_gravity = current_arena.gravity
-        player_jump_force = 2  # Default jump force for Judgement Arena
+        player_jump_force = 2
 
 pg.font.init()
 font = pg.font.Font(None, 35)
@@ -163,7 +163,7 @@ while running:
                 player1.jumping = False
                 player1.jump_count = 0
     else:
-        # Če igralec ni več na platformi, naj pade dol
+        # Platform check
         if not current_arena.is_on_platform(player1) and player1.y < floor_y_pos - player1.height:
             player1.jumping = True
 
@@ -183,7 +183,7 @@ while running:
                 player2.jumping = False
                 player2.jump_count = 0
     else:
-        # Če igralec ni več na platformi, naj pade dol
+        # Platform check
         if not current_arena.is_on_platform(player2) and player2.y < floor_y_pos - player2.height:
             player2.jumping = True
 
@@ -228,7 +228,7 @@ while running:
     def draw_health_text_with_bg(window, text, pos, font):
         text_surface = font.render(text, True, (255, 255, 255))
         bg_rect = text_surface.get_rect(topleft=pos)
-        bg_rect.inflate_ip(20, 10)  # Dodaten prostor za ozadje in okvir
+        bg_rect.inflate_ip(20, 10)
 
         gradient_surface = pg.Surface(bg_rect.size)
         for y in range(bg_rect.height):
