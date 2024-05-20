@@ -38,15 +38,6 @@ if len(result) == 3:
     elif selected_characters[1] == 'Ronan':
         player2 = Characters.Ronan
 
-    if selected_arena == 'Dragon Arena':
-        player_speed = current_arena.player_speed
-        player_gravity = current_arena.player_gravity
-        player_jump_force = current_arena.player_jump_force
-    elif selected_arena == 'Judgement Arena':
-        player_speed = 1
-        player_gravity = current_arena.gravity
-        player_jump_force = 2
-
 pg.font.init()
 font = pg.font.Font(None, 35)
 
@@ -70,9 +61,9 @@ while running:
     keys = pg.key.get_pressed()
     # Player1
     if keys[pg.K_d]:
-        player1.move('right', current_arena.width, player_speed)
+        player1.move('right', current_arena.width)
     if keys[pg.K_a]:
-        player1.move('left', current_arena.width, player_speed)
+        player1.move('left', current_arena.width)
     if keys[pg.K_s]:
         if player1.previous_y < player1.y:
             player1.jump_multiplier = player1.fall_speed
@@ -80,9 +71,9 @@ while running:
             current_arena.move_down_through_platform(player1)
     # Player2
     if keys[pg.K_RIGHT]:
-        player2.move('right', current_arena.width, player_speed)
+        player2.move('right', current_arena.width)
     if keys[pg.K_LEFT]:
-        player2.move('left', current_arena.width, player_speed)
+        player2.move('left', current_arena.width)
     if keys[pg.K_DOWN]:
         if player2.previous_y < player2.y:
             player2.jump_multiplier = player2.fall_speed
@@ -104,7 +95,7 @@ while running:
                     music_playing = True
             # Player1
             if event.key == pg.K_w:
-                player1.jump(player_jump_force)
+                player1.jump()
             if event.key == pg.K_f:
                 player1.current_weapon = player1.weapons[0]
                 player1.current_weapon.stage = -1
@@ -114,7 +105,7 @@ while running:
                 player1.use_weapon()
             # Player2
             if event.key == pg.K_UP:
-                player2.jump(player_jump_force)
+                player2.jump()
             if event.key == pg.K_KP1:
                 player2.current_weapon = player2.weapons[0]
                 player2.current_weapon.stage = -1
@@ -150,7 +141,7 @@ while running:
     # Player1
     if player1.jumping:
         player1.previous_y = player1.y
-        player1.velocity -= (player_gravity * player1.jump_multiplier)
+        player1.velocity -= (current_arena.gravity * player1.jump_multiplier)
         player1.y -= player1.velocity
         if player1.y >= floor_y_pos - player1.height:
             player1.y = floor_y_pos - player1.height
@@ -170,7 +161,7 @@ while running:
     # Player2
     if player2.jumping:
         player2.previous_y = player2.y
-        player2.velocity -= (player_gravity * player2.jump_multiplier)
+        player2.velocity -= (current_arena.gravity * player2.jump_multiplier)
         player2.y -= player2.velocity
         if player2.y >= floor_y_pos - player2.height:
             player2.y = floor_y_pos - player2.height

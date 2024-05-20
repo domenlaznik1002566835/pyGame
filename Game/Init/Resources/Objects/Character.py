@@ -66,29 +66,25 @@ class Character:
             self.current_weapon = weapon
             self.rotation = weapon.rotation
 
-    def move(self, direction, window_width, speed=None):
-        if speed is None:
-            speed = self.speed
+    def move(self, direction, window_width):
         if direction == 'right':
             if self.x + self.width < window_width:
-                self.x += speed
+                self.x += self.speed
             if self.current_weapon != None:
                 self.current_weapon.rotation = -1
             self.image = self.image_right
         elif direction == 'left':
             if self.x > 0:
-                self.x -= speed
+                self.x -= self.speed
             if self.current_weapon != None:
                 self.current_weapon.rotation = 1
             self.image = self.image_left
 
-    def jump(self, jump_force=None):
-        if jump_force is None:
-            jump_force = self.jump_force
+    def jump(self):
         if self.jump_count < self.max_jump_count:
             self.jumping = True
-            self.velocity = jump_force
-            self.jump_multiplier = jump_force
+            self.velocity = self.jump_force
+            self.jump_multiplier = self.jump_force
             self.jump_count += 1
 
     def use_weapon(self):
