@@ -5,7 +5,7 @@
   "JUMP_FORCE": 5,
   "FALL_SPEED": 0.2,
   "MAX_JUMP_COUNT": 2,
-  "WIDTH": 80,
-  "HEIGHT": 120,
+  "WIDTH": 160,
+  "HEIGHT": 240,
   "SPRITE": "Resources/Sprites/samurai.png"
 }
