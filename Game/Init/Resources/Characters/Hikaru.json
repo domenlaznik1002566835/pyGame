@@ -5,7 +5,7 @@
   "JUMP_FORCE": 5,
   "FALL_SPEED": 0.15,
   "MAX_JUMP_COUNT": 2,
-  "WIDTH": 30,
-  "HEIGHT": 60,
+  "WIDTH": 80,
+  "HEIGHT": 120,
   "SPRITE": "Resources/Sprites/ninja.png"
 }

@@ -1,23 +1,15 @@
 import pygame as pg
-import json
 from Game.Init.Resources.Objects.Platform import Platform
+from Game.Init.Resources.Objects.Arena import Arena
 
-class DragonArena:
+class DragonArena(Arena):  # Inherit from the base Arena class
     def __init__(self, name, width, height, gravity, floor_y, background_image, platform_image):
-        self.name = name
-        self.width = width
-        self.height = height
-        self.gravity = gravity
-        self.floor_y = floor_y
-        self.platforms = []
-        self.background_color = (30, 30, 30)
-        self.player_speed = 2
-        self.player_gravity = self.gravity / 2
-        self.player_jump_force = 1
-
-        # Load pixel art images
+        super().__init__(name, width, height, gravity, floor_y)
         self.background_image = pg.image.load(background_image)
         self.platform_image = pg.image.load(platform_image)
+        self.player_speed = 5  # Increased speed
+        self.player_gravity = self.gravity  # Keep gravity consistent
+        self.player_jump_force = 15  # Increased jump force
 
     def load_platforms(self):
         # Add platforms specific to Dragon Arena
@@ -38,9 +30,6 @@ class DragonArena:
             platform_rect = pg.Rect(platform.x, platform.y, platform.width, platform.height)
             platform_scaled = pg.transform.scale(self.platform_image, (platform.width, platform.height))
             window.blit(platform_scaled, platform_rect.topleft)
-
-    def add_platform(self, platform):
-        self.platforms.append(platform)
 
     def check_collision(self, player):
         player_rect = pg.Rect(player.x, player.y, player.width, player.height)

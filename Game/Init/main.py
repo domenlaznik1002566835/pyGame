@@ -39,9 +39,9 @@ if len(result) == 3:
         player2 = Characters.Ronan
 
     if selected_arena == 'Dragon Arena':
-        player_speed = current_arena.player_speed
+        player_speed = 3
         player_gravity = current_arena.player_gravity
-        player_jump_force = current_arena.player_jump_force
+        player_jump_force = 5
     elif selected_arena == 'Judgement Arena':
         player_speed = 1
         player_gravity = current_arena.gravity

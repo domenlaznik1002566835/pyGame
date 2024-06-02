@@ -2,8 +2,8 @@
   "NAME": "Dragon Arena",
   "WIDTH": 1920,
   "HEIGHT": 1080,
-  "GRAVITY": 0.005,
+  "GRAVITY": 0.01,
   "FLOOR_Y": 250,
-  "BACKGROUND_IMAGE": "Resources/Backgrounds/BackgroundDragonArena.webp",
-  "PLATFORM_IMAGE": "Resources/Backgrounds/Platform.png"
+  "BACKGROUND_IMAGE": "Resources/Backgrounds/arena2.webp",
+  "PLATFORM_IMAGE": "Resources/Backgrounds/output3.webp"
 }
